@@ -61,4 +61,11 @@ public class BookTest extends AbstractBasicTest{
         assertEquals("Brian Michael Bendis", book1.getAuthor().getName());
     }
     
+    @Test
+    public void consultarBook() {
+        Book book = em.find(Book.class, 2L);
+        assertNotNull(book);
+        assertEquals("Homens e caranguejos", book.getTitle());         
+    }
+    
 }
