@@ -8,6 +8,7 @@ package ifpe.tads.descorpproject1;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -40,12 +41,9 @@ public class Book implements Serializable {
     @Column(name = "PUBLISHER", length = 150, nullable = false)
     private String publisher;
     
-    @ManyToOne(fetch = FetchType.LAZY, optional = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_AUTHOR", referencedColumnName = "ID")
     private Author author;
-    
-//    @ManyToMany(mappedBy = "library")
-//    private List<Library> libraries;
 
     public String getPublisher() {
         return publisher;

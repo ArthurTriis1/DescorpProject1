@@ -5,9 +5,6 @@
  */
 package ifpe.tads.descorpproject1;
 
-import java.util.List;
-import org.hamcrest.CoreMatchers;
-import static org.hamcrest.CoreMatchers.startsWith;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

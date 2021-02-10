@@ -25,8 +25,6 @@ public class BookTest extends AbstractBasicTest{
         assertEquals("João Cabral", author.getName());
         book.setAuthor(author);
         em.persist(book);
-        
-        em.persist(book);
         em.flush();
         assertNotNull(book.getId());
     }
@@ -44,12 +42,23 @@ public class BookTest extends AbstractBasicTest{
     }
     
     @Test
-    public void consultarBook() {
-        Book book = em.find(Book.class, 1L);
-        assertEquals("Capitães da areia", book.getTitle());
-        Author author = book.getAuthor();
-        assertNotNull(author);
-        assertEquals("Jorge Amado", author.getName());
+    public void persisitirBookCriarAuthor() {
+        Book book1 = new Book();
+        book1.setTitle("Alias");
+        book1.setReleaseYear(2008);
+        book1.setPublisher("Panini Comics");
+
+        Author author = new Author();
+        author.setName("Brian Michael Bendis");
+
+        book1.setAuthor(author);
+        
+        em.persist(book1);
+        em.flush();
+        
+        assertNotNull(book1.getId());
+        assertNotNull(book1.getAuthor().getId());
+        assertEquals("Brian Michael Bendis", book1.getAuthor().getName());
     }
     
 }
