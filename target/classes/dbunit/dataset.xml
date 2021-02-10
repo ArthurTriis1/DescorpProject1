@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <TB_AUTHOR name="Jorge Amado" />
+    <TB_AUTHOR name="João Cabral" />
+    <TB_AUTHOR name="Josue de Castro" />
+    
+    <TB_BOOK title="Capitães da areia" release_year="1960" publisher="Cia das letras" id_author="1"/>
+    <TB_BOOK title="Homens e caranguejos" release_year="1920" publisher="Saraiva" id_author="2"/>
+    <TB_BOOK title="Morte e vida severina" release_year="1900" publisher="Palavras ao vento" id_author="3"/>
+    
+    <TB_LIBRARY 
+        name="Casa da cultura" 
+        address="Rua esculano bandeira, 134, Santo Amaro"
+    />
+    <TB_LIBRARY name="Livraria Saraiva" address="Shopping Rio Mar" />
+    <TB_LIBRARY name="Cultura" address="Bairro do Recife, proximo ao marco 0" />
+    
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="1" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="2" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="3" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="1" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="2" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="1" />
+
+</dataset>
