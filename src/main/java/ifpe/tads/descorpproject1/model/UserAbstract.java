@@ -39,7 +39,7 @@ import javax.persistence.TemporalType;
 public abstract class UserAbstract implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    protected Long id;
     
     @Column(name = "NAME", nullable = false)
     private String name;
@@ -113,7 +113,7 @@ public abstract class UserAbstract implements Serializable{
     
     
     
-        @Override
+    @Override
     public int hashCode() {
         int hash = 0;
         hash += (id != null ? id.hashCode() : 0);

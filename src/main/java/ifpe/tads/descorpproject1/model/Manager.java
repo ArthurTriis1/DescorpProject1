@@ -37,5 +37,14 @@ public class Manager extends UserAbstract implements Serializable{
         this.library = library;
     }
     
-    
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Manager)) {
+            return false;
+        }
+        Manager other = (Manager) object;
+
+        return !((this.getId() == null && other.getId() != null) || 
+                (this.getId() != null && !this.getId().equals(other.getId())));
+    }
 }

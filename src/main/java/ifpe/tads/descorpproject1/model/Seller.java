@@ -49,6 +49,16 @@ public class Seller extends UserAbstract implements Serializable{
         this.area = area;
     }
     
+    @Override
+    public boolean equals(Object object) {
+        if (!(object instanceof Seller)) {
+            return false;
+        }
+        Seller other = (Seller) object;
+
+        return !((this.getId() == null && other.getId() != null) || 
+                (this.getId() != null && !this.getId().equals(other.getId())));
+    }
     
     
 }
