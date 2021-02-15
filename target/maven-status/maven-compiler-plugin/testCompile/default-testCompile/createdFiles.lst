@@ -1,6 +1,9 @@
-ifpe\tads\descorpproject1\AuthorTest.class
-ifpe\tads\descorpproject1\AbstractBasicTest.class
-ifpe\tads\descorpproject1\LibraryTest.class
-ifpe\tads\descorpproject1\DbUnitUtil.class
-ifpe\tads\descorpproject1\BookTest.class
-ifpe\tads\descorpproject1\TesteSuite.class
+ifpe\tads\descorpproject1\model\DbUnitUtil.class
+ifpe\tads\descorpproject1\model\BookTest.class
+ifpe\tads\descorpproject1\model\LibraryTest.class
+ifpe\tads\descorpproject1\model\AbstractBasicTest.class
+ifpe\tads\descorpproject1\model\AuthorTest.class
+ifpe\tads\descorpproject1\model\SellerTest.class
+ifpe\tads\descorpproject1\model\AddressTest.class
+ifpe\tads\descorpproject1\model\TesteSuite.class
+ifpe\tads\descorpproject1\model\ManagerTest.class

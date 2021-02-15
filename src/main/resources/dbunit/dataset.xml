@@ -4,16 +4,59 @@
     <TB_AUTHOR name="João Cabral" />
     <TB_AUTHOR name="Josue de Castro" />
     
-    <TB_BOOK title="Capitães da areia" release_year="1960" publisher="Cia das letras" id_author="1"/>
-    <TB_BOOK title="Homens e caranguejos" release_year="1920" publisher="Saraiva" id_author="2"/>
-    <TB_BOOK title="Morte e vida severina" release_year="1900" publisher="Palavras ao vento" id_author="3"/>
+    <TB_BOOK 
+        title="Capitães da areia" 
+        release_year="1960" 
+        publisher="Cia das letras" 
+        id_author="1"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Homens e caranguejos" 
+        release_year="1920" 
+        publisher="Saraiva" 
+        id_author="2"
+        condition="NEW"
+    />
+    
+    <TB_BOOK 
+        title="Morte e vida severina" 
+        release_year="1900" 
+        publisher="Palavras ao vento" 
+        id_author="3"
+        condition="SEMI_NEW"
+    />
     
     <TB_LIBRARY 
         name="Casa da cultura" 
-        address="Rua esculano bandeira, 134, Santo Amaro"
+        ADD_STREET="Roua Ourem"
+        ADD_DISTRICT="San Martin"
+        ADD_NUMBER="175"
+        ADD_COMPLEMENT="B5 APT204"
+        ADD_POSTAL_CODE="50761340"
+        ADD_STATE="PE"
     />
-    <TB_LIBRARY name="Livraria Saraiva" address="Shopping Rio Mar" />
-    <TB_LIBRARY name="Cultura" address="Bairro do Recife, proximo ao marco 0" />
+    
+    <TB_LIBRARY 
+        name="Livraria Saraiva" 
+        ADD_STREET="Rua Itapemirim"
+        ADD_DISTRICT="Bongi"
+        ADD_NUMBER="667"
+        ADD_COMPLEMENT="Atras da corredor principal"
+        ADD_POSTAL_CODE="50761222"
+        ADD_STATE="PE"
+    />
+    
+    <TB_LIBRARY 
+        name="Cultura" 
+        ADD_STREET="Rua Nossa senhora"
+        ADD_DISTRICT="Ibirapuera"
+        ADD_NUMBER="616"
+        ADD_COMPLEMENT="Pertinho de você"
+        ADD_POSTAL_CODE="789009654"
+        ADD_STATE="SP"
+    />
     
     <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="1" />
     <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="2" />
@@ -21,5 +64,86 @@
     <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="1" />
     <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="2" />
     <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="1" />
+    
+    <TB_USER 
+        name="Arthur"
+        legal_document="7789906657"
+        birth_date="1999-04-27"
+        payment="1000"
+        disc_user="SEL"
+    />
+    
+    <TB_USER 
+        name="Gabryelli"
+        legal_document="7789954432"
+        birth_date="1995-10-02"
+        payment="2500"
+        disc_user="SEL"
+    />
+    
+    <TB_USER 
+        name="Forroldo"
+        legal_document="887664113"
+        birth_date="1998-04-05"
+        payment="3500"
+        disc_user="MAN"
+    />
+    
+    <TB_USER 
+        name="Jennifer"
+        legal_document="5566774231"
+        birth_date="1973-04-09"
+        payment="6000.00"
+        disc_user="MAN"
+    />
+    
+    <TB_PHONE 
+        id_user="1"
+        phone="11111-1111"
+    />
+    
+    <TB_PHONE 
+        id_user="1"
+        phone="22222-2222"
+    />
+    
+    <TB_PHONE 
+        id_user="2"
+        phone="33333-3333"
+    />
+    
+    <TB_PHONE 
+        id_user="2"
+        phone="44444-4444"
+    />
+    
+    <TB_PHONE 
+        id_user="3"
+        phone="55555-5555"
+    />
+    
+    <TB_SELLER
+        id_user="1" 
+        id_library="1"
+        area="Classicos"
+    />
+    
+    <TB_SELLER
+        id_user="2" 
+        id_library="1"
+        area="Quadrinhos"
+    />
+    
+    <TB_MANAGER
+        id_user="3" 
+        id_library="1"
+    />
+    
+    <TB_MANAGER
+        id_user="4" 
+        id_library="2"
+    />
+    
+    
 
 </dataset>
