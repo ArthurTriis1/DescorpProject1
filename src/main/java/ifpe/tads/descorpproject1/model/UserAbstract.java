@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
@@ -121,13 +122,18 @@ public abstract class UserAbstract implements Serializable{
     }
 
     @Override
-    public boolean equals(Object object) {
-        if (!(object instanceof UserAbstract)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        UserAbstract other = (UserAbstract) object;
-
-        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final UserAbstract other = (UserAbstract) obj;
+        return Objects.equals(this.id, other.id);
     }
     
 }

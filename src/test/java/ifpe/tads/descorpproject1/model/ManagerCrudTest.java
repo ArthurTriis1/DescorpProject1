@@ -8,15 +8,16 @@ package ifpe.tads.descorpproject1.model;
 import java.util.Date;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 /**
  *
  * @author arthu
  */
-public class ManagerTest extends AbstractBasicTest{
+public class ManagerCrudTest extends AbstractBasicTest{
     @Test
-    public void persistirManager() {
+    public void createManager() {
         Manager manager = new Manager();
         manager.setName("Manager");
         manager.setBirthDay(new Date());
@@ -29,11 +30,29 @@ public class ManagerTest extends AbstractBasicTest{
     }
     
     @Test
-    public void consultarManager() {
+    public void readManager() {
         Manager manager = em.find(Manager.class, 3L);
         assertNotNull(manager);
-        System.out.println(manager.getName());
-        System.out.println(manager.getLegalDocument());
         assertEquals("887664113" , manager.getLegalDocument());
+    }
+    
+        @Test
+    public void updateManager(){
+        String newName = "Jão";
+        Manager manager = em.find(Manager.class, 3L);
+        manager.setName(newName);
+        em.clear();        
+        em.merge(manager);
+        em.flush();
+        Manager updatedManager = em.find(Manager.class, 3L);
+        assertEquals(newName, updatedManager.getName());
+    }
+    
+    @Test
+    public void deleteManager(){
+        Manager manager = em.find(Manager.class, 4L);
+        em.remove(manager);
+        Manager deletedManager = em.find(Manager.class, 4L);
+        assertNull(deletedManager);
     }
 }

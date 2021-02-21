@@ -13,9 +13,9 @@ import static org.junit.Assert.*;
  *
  * @author arthu
  */
-public class SellerTest extends AbstractBasicTest{
+public class SellerCrudTest extends AbstractBasicTest{
     @Test
-    public void persistirSeller() {
+    public void createSeller() {
         Seller seller = new Seller();
         seller.setName("Seller");
         seller.setBirthDay(new Date());
@@ -31,9 +31,28 @@ public class SellerTest extends AbstractBasicTest{
     }
     
     @Test
-    public void consultarSeller() {
-        Seller seller = em.find(Seller.class, 1L);
+    public void readSeller() {
+        Seller seller = em.find(Seller.class, 2L);
         assertNotNull(seller);
-        assertEquals("7789906657" , seller.getLegalDocument());
+        assertEquals("7789954432" , seller.getLegalDocument());
     }
+    
+    public void updateSeller(){
+        String newName = "new name";
+        Seller seller = em.find(Seller.class, 3L);
+        seller.setName(newName);
+        em.clear();        
+        em.merge(seller);
+        em.flush();
+        Seller updatedSeller = em.find(Seller.class, 3L);
+        assertEquals(newName, updatedSeller.getName());
+    }
+    
+//    @Test
+//    public void deleteSeller(){
+//        Seller seller = em.find(Seller.class, 1L);
+//        em.remove(seller);
+//        Seller deletedSeller = em.find(Seller.class, 1L);
+//        assertNull(deletedSeller);
+//    }
 }

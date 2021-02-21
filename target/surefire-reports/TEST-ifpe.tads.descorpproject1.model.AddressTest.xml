@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="2" failures="0" name="ifpe.tads.descorpproject1.model.AddressTest" time="0.069" errors="0" skipped="0">
+<testsuite tests="4" failures="0" name="ifpe.tads.descorpproject1.model.AddressTest" time="0.051" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.9+7-LTS"/>
@@ -64,6 +64,8 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="persistirAddress" time="0.041"/>
-  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="consultarAddress" time="0.028"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="readAddress" time="0.033"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="deleteAddress" time="0.008"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="createAddress" time="0.006"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AddressTest" name="updateAddress" time="0.004"/>
 </testsuite>

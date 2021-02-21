@@ -8,15 +8,16 @@ package ifpe.tads.descorpproject1.model;
 import ifpe.tads.descorpproject1.enums.BrazilianStates;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 import org.junit.Test;
 
 /**
  *
  * @author arthu
  */
-public class AddressTest extends AbstractBasicTest{
+public class AddressCrudTest extends AbstractBasicTest{
     @Test
-    public void persistirAddress() {
+    public void createAddress() {
         Library library = new Library();
         library.setName("Sebo com endereço");
         
@@ -52,11 +53,34 @@ public class AddressTest extends AbstractBasicTest{
     }
     
     @Test
-    public void consultarAddress() {
+    public void readAddress() {
         Library library = em.find(Library.class, 2L);
-
         assertNotNull(library);
         assertEquals("50761222" , library.getAddress().getPostalCode());
+
+    }
+    
+    @Test
+    public void updateAddress() {
+        String newComplement = "new complement";
+        
+        Library library = em.find(Library.class, 2L);
+        library.getAddress().setComplement(newComplement);
+        
+        em.clear();        
+        em.merge(library);
+        em.flush();
+        
+        assertEquals(newComplement , library.getAddress().getComplement());
+
+    }
+    
+    @Test
+    public void deleteAddress() {
+        Library library = em.find(Library.class, 1L);
+        library.setAddress(null);
+        Address deletedAddressOflibrary = em.find(Library.class, 1L).getAddress();
+        assertNull(deletedAddressOflibrary);
 
     }
        

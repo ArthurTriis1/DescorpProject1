@@ -5,8 +5,6 @@
  */
 package ifpe.tads.descorpproject1.model;
 
-import ifpe.tads.descorpproject1.model.Author;
-import ifpe.tads.descorpproject1.model.Book;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -14,10 +12,10 @@ import static org.junit.Assert.*;
  *
  * @author arthu
  */
-public class BookTest extends AbstractBasicTest{
+public class BookCrudTest extends AbstractBasicTest{
 
     @Test
-    public void persistirBookComAuthor() {
+    public void createBookWithAuthor() {
         Book book = new Book();
         book.setTitle("Sandman");
         book.setPublisher("Panini");
@@ -32,7 +30,7 @@ public class BookTest extends AbstractBasicTest{
     }
     
     @Test
-    public void persistirBookSemAuthor() {
+    public void createBookWithoutAuthor() {
         Book book = new Book();
         book.setTitle("Astronauta");
         book.setPublisher("Panini Brasil");
@@ -44,7 +42,7 @@ public class BookTest extends AbstractBasicTest{
     }
     
     @Test
-    public void persisitirBookCriarAuthor() {
+    public void createBookCreateAuthor() {
         Book book1 = new Book();
         book1.setTitle("Alias");
         book1.setReleaseYear(2008);
@@ -64,10 +62,32 @@ public class BookTest extends AbstractBasicTest{
     }
     
     @Test
-    public void consultarBook() {
+    public void findBook() {
         Book book = em.find(Book.class, 2L);
         assertNotNull(book);
         assertEquals("Homens e caranguejos", book.getTitle());         
+    }
+    
+    @Test
+    public void updateBook() {
+        String newTitle = "Novo titulo";
+        Book book = em.find(Book.class, 1L);
+        book.setTitle(newTitle);
+        em.clear();        
+        em.merge(book);
+        em.flush();
+        Book updatedBook = em.find(Book.class, 1L);
+        assertEquals(newTitle, updatedBook.getTitle());         
+    }
+    
+    @Test
+    public void deleteBook(){
+        Library library = em.find(Library.class, 1L);
+        Book book = em.find(Book.class, 3L);
+        library.removeBook(book);    
+        em.remove(book);
+        Book deletedBook = em.find(Book.class, 3L);
+        assertNull(deletedBook);
     }
     
 }

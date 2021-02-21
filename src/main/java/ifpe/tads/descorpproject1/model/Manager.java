@@ -25,8 +25,8 @@ import javax.persistence.Table;
 @PrimaryKeyJoinColumn(name = "ID_USER", referencedColumnName = "ID")
 public class Manager extends UserAbstract implements Serializable{
     
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = true)
-    @JoinColumn(name = "ID_LIBRARY", referencedColumnName = "ID")
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST, optional = true, orphanRemoval = false)
+    @JoinColumn(name = "ID_LIBRARY", referencedColumnName = "ID" , nullable = true)
     private Library library;
 
     public Library getLibrary() {

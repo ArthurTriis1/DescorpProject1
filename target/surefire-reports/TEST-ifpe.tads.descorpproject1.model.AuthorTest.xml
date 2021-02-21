@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite tests="3" failures="0" name="ifpe.tads.descorpproject1.model.AuthorTest" time="0.041" errors="0" skipped="0">
+<testsuite tests="5" failures="0" name="ifpe.tads.descorpproject1.model.AuthorTest" time="0.042" errors="0" skipped="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="java.vm.version" value="11.0.9+7-LTS"/>
@@ -64,7 +64,9 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="persistirAuthorSemLivro" time="0.009"/>
-  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="consultarLivroDoAuthor" time="0.012"/>
-  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="persistirAuthorComLivro" time="0.02"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="findBookByAuthor" time="0.006"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="updateAuthor" time="0.004"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="createAuthorWithoutBook" time="0.004"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="deletarAuthor" time="0.022"/>
+  <testcase classname="ifpe.tads.descorpproject1.model.AuthorTest" name="createAuthorWithBook" time="0.006"/>
 </testsuite>

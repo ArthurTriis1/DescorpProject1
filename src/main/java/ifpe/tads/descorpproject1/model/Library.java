@@ -42,7 +42,7 @@ public class Library implements Serializable {
     @Embedded
     private Address address;
     
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "TB_LIBRARY_BOOK", joinColumns = {
         @JoinColumn(name = "ID_LIBRARY")},
             inverseJoinColumns = {
@@ -50,10 +50,14 @@ public class Library implements Serializable {
     private List<Book> books;
     
     @OneToMany(mappedBy = "library", fetch = FetchType.LAZY,
-            cascade = CascadeType.ALL, orphanRemoval = false)
+            cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Seller> sellers;
     
-    @OneToOne(mappedBy = "library", optional = true, fetch = FetchType.LAZY)
+    @OneToOne(mappedBy = "library", 
+              cascade = CascadeType.PERSIST, 
+              fetch = FetchType.LAZY,
+              optional = true, 
+              orphanRemoval = true)
     private Manager manager;
 
     public Long getId() {
