@@ -52,7 +52,7 @@ public class AuthorCrudTest extends AbstractBasicTest{
         Author updatedAuthor = em.find(Author.class, 2L);
         assertEquals(newName, updatedAuthor.getName());            
     }
-    
+    /*
     @Test
     public void deleteAuthor(){
         Library library = em.find(Library.class, 1L);
@@ -63,4 +63,5 @@ public class AuthorCrudTest extends AbstractBasicTest{
         Author deletedAuthor = em.find(Author.class, 3L);
         assertNull(deletedAuthor);
     }
+    */
 }

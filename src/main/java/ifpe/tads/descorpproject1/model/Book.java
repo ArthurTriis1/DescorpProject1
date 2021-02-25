@@ -19,6 +19,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -27,6 +29,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_BOOK")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name="Book.PorId",
+                    query="SELECT b FROM Book b WHERE b.id = :bookId"
+            )
+        }
+)
 public class Book implements Serializable {
     
     @Id

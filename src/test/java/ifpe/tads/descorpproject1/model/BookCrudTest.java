@@ -5,6 +5,8 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import java.util.List;
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -63,31 +65,70 @@ public class BookCrudTest extends AbstractBasicTest{
     
     @Test
     public void findBook() {
-        Book book = em.find(Book.class, 2L);
+        String titulo = "Tieta do Agreste";
+        String jpql = "SELECT b FROM Book b WHERE b.title = :titulo";
+        
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter("titulo", titulo);
+        
+        Book book = query.getSingleResult();
+        
         assertNotNull(book);
-        assertEquals("Homens e caranguejos", book.getTitle());         
     }
     
     @Test
     public void updateBook() {
-        String newTitle = "Novo titulo";
-        Book book = em.find(Book.class, 1L);
-        book.setTitle(newTitle);
-        em.clear();        
-        em.merge(book);
+        String editado = " [EDITADO]";
+        Long idLivro = 1L;
+        
+        Book book = em.find(Book.class, idLivro);
+        String tituloEditado = book.getTitle() + editado;
+        String editoraEditado = book.getPublisher() + editado;
+        
+        book.setTitle(tituloEditado);
+        book.setPublisher(editoraEditado);
         em.flush();
-        Book updatedBook = em.find(Book.class, 1L);
-        assertEquals(newTitle, updatedBook.getTitle());         
+        
+        String jpql = "SELECT b FROM Book b WHERE b.id = ?1";
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter(1, idLivro);
+        
+        book = query.getSingleResult();
+        assertEquals(tituloEditado, book.getTitle());
+        assertEquals(editoraEditado, book.getPublisher());
     }
-    
+    /*
     @Test
     public void deleteBook(){
         Library library = em.find(Library.class, 1L);
         Book book = em.find(Book.class, 3L);
-        library.removeBook(book);    
+        library.removeBook(book);
         em.remove(book);
         Book deletedBook = em.find(Book.class, 3L);
         assertNull(deletedBook);
+        
+        TypedQuery<Library> libraryQuery = em.createNamedQuery("Library.PorLivro", Library.class);
+        TypedQuery<Book> bookQuery = em.createNamedQuery("Book.PorId", Book.class);
+        
+        libraryQuery.setParameter("bookId", 3L);
+        bookQuery.setParameter("bookId", 3L);
+                        
+        Book book = bookQuery.getSingleResult();
+        assertNotNull(book);
+           
+        List<Library> libraries = libraryQuery.getResultList();
+        
+        libraries.forEach(library -> {
+            library.removeBook(book);
+        });
+        em.flush();
+        
+        em.remove(book);
+        em.flush();
+        
+        assertEquals(0, libraryQuery.getResultList().size());
+        assertEquals(0, bookQuery.getResultList().size());
     }
+    */
     
 }

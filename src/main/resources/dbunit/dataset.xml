@@ -3,7 +3,10 @@
     <TB_AUTHOR name="Jorge Amado" />
     <TB_AUTHOR name="João Cabral" />
     <TB_AUTHOR name="Josue de Castro" />
+    <TB_AUTHOR name="Clarice Lispector" />
+    <TB_AUTHOR name="Guimarães Rosa" />
     
+    <!--INICIO - Jorge Amado-->
     <TB_BOOK 
         title="Capitães da areia" 
         release_year="1960" 
@@ -13,20 +16,149 @@
     />
     
     <TB_BOOK 
-        title="Homens e caranguejos" 
-        release_year="1920" 
-        publisher="Saraiva" 
-        id_author="2"
+        title="Tieta do Agreste" 
+        release_year="1977" 
+        publisher="Cia das letras" 
+        id_author="1"
+        condition="SEMI_NEW"
+    />
+    
+    <TB_BOOK 
+        title="Dona Flor e seus dois maridos" 
+        release_year="1966" 
+        publisher="Cia das letras" 
+        id_author="1"
         condition="NEW"
     />
     
     <TB_BOOK 
+        title="A morte e a morte de Quincas Berro d'Água" 
+        release_year="1962" 
+        publisher="Sociedade dos Cem bibliófilos do Brasil" 
+        id_author="1"
+        condition="MANIPULATED"
+    />
+    <!--FIM-->
+        
+    <!--INICIO - Josue de Castro-->    
+    <TB_BOOK 
         title="Morte e vida severina" 
-        release_year="1900" 
-        publisher="Palavras ao vento" 
+        release_year="1955" 
+        publisher="TUCA" 
+        id_author="2"
+        condition="SEMI_NEW"
+    />   
+    
+    <TB_BOOK 
+        title="A educação pela pedra" 
+        release_year="1966" 
+        publisher="Alfaguara" 
+        id_author="2"
+        condition="NEW"
+    />
+    <!--FIM-->
+    
+    <!--INICIO - João Cabral-->    
+    <TB_BOOK 
+        title="Homens e caranguejos" 
+        release_year="1967" 
+        publisher="Brasília" 
         id_author="3"
         condition="SEMI_NEW"
     />
+    
+    <TB_BOOK 
+        title="Geografia da fome: A fome no Brasil" 
+        release_year="1946" 
+        publisher="O Cruzeiro" 
+        id_author="3"
+        condition="NEW"
+    />
+    
+    <TB_BOOK 
+        title="Fome: um tema proibido - últimos escritos de Josué de Castro." 
+        release_year="2003" 
+        publisher="Civilização Brasileira" 
+        id_author="3"
+        condition="MANIPULATED"
+    />
+    <!--FIM-->
+    
+    <!--INICIO - Clarice Lispector-->
+    <TB_BOOK 
+        title="Laços de família" 
+        release_year="1960" 
+        publisher="Rocco" 
+        id_author="4"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Perto do coração selvagem" 
+        release_year="1943" 
+        publisher="Rocco" 
+        id_author="4"
+        condition="NEW"
+    />
+    
+    <TB_BOOK 
+        title="A Legião Estrangeira" 
+        release_year="1964" 
+        publisher="Ática" 
+        id_author="4"
+        condition="SEMI_NEW"
+    />
+    
+    <TB_BOOK 
+        title="Um sopro de vida" 
+        release_year="1978" 
+        publisher="Nova Fronteira" 
+        id_author="4"
+        condition="MANIPULATED"
+    />
+    <!--FIM-->
+    
+    <!--INICIO - Guimarães Rosa-->
+    <TB_BOOK 
+        title="Grande Sertão: Veredas" 
+        release_year="1956" 
+        publisher="José Olympio" 
+        id_author="5"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Magma" 
+        release_year="1997" 
+        publisher="Nova Fronteira" 
+        id_author="5"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Sagarana" 
+        release_year="1946" 
+        publisher="Universal" 
+        id_author="5"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Primeiras estórias" 
+        release_year="1962" 
+        publisher="José Olympio" 
+        id_author="5"
+        condition="MANIPULATED"
+    />
+    
+    <TB_BOOK 
+        title="Tutameia - Terceiras Estórias" 
+        release_year="1967" 
+        publisher="José Olympio" 
+        id_author="5"
+        condition="MANIPULATED"
+    />
+    <!--FIM-->
     
     <TB_LIBRARY 
         name="Casa da cultura" 
@@ -58,12 +190,49 @@
         ADD_STATE="SP"
     />
     
-    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="1" />
-    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="2" />
     <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="3" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="6" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="7" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="8" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="13" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="14" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="15" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="16" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="17" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="1" ID_BOOK="18" />
+    
     <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="1" />
-    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="2" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="2" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="3" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="4" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="5" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="6" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="7" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="8" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="9" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="10" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="11" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="14" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="15" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="17" />    
+    <TB_LIBRARY_BOOK ID_LIBRARY="2" ID_BOOK="18" />
+    
     <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="1" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="2" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="3" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="4" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="5" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="6" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="7" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="8" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="9" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="10" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="11" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="12" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="13" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="15" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="18" />
+    <TB_LIBRARY_BOOK ID_LIBRARY="3" ID_BOOK="17" />
     
     <TB_USER 
         name="Arthur"

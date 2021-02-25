@@ -20,6 +20,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,6 +32,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "TB_LIBRARY")
+@NamedQueries(
+        {
+            @NamedQuery(
+                    name="Library.PorLivro",
+                    query="SELECT l FROM Library l JOIN l.books book WHERE book.id = :bookId"
+            )
+        }
+)
 public class Library implements Serializable {
     
     @Id
@@ -42,7 +52,7 @@ public class Library implements Serializable {
     @Embedded
     private Address address;
     
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "TB_LIBRARY_BOOK", joinColumns = {
         @JoinColumn(name = "ID_LIBRARY")},
             inverseJoinColumns = {
