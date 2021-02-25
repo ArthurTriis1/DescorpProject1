@@ -5,6 +5,7 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -18,11 +19,18 @@ public class AuthorCrudTest extends AbstractBasicTest{
     public void createAuthorWithBook() {
         Author author = new Author();
         author.setName("Alan Moore");
-        Book book = em.find(Book.class, 1L);
+        
+        String jpql = "SELECT b FROM Book b WHERE b.id = ?1";
+        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+        query.setParameter(1, 1L);
+        
+        Book book = query.getSingleResult();
         author.addBook(book);
         em.persist(author);
         em.flush();
+        
         assertNotNull(author.getId());
+        assertEquals(1, author.getBooks().size());
     }
     
     @Test
@@ -35,22 +43,48 @@ public class AuthorCrudTest extends AbstractBasicTest{
     }
     
     @Test
-    public void readAuthor() {
-        Author author = em.find(Author.class, 1L);
+    public void countAuthorBooks() {
+        String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
+        
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        query.setParameter(1, 1L);
+        
+        Author author = query.getSingleResult();
         assertNotNull(author);
-        assertEquals("Jorge Amado", author.getName());           
+        
+        assertEquals(4, author.getBooks().size());
+    }
+    
+    @Test
+    public void readAuthor() {
+        String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        query.setParameter(1, 1L);
+        
+        Author author = query.getSingleResult();
+        
+        assertEquals("Jorge Amado", author.getName());
     }
     
     @Test
     public void updateAuthor() {
-        String newName = "Cabral João";
-        Author author = em.find(Author.class, 2L);
-        author.setName(newName);
-        em.clear();        
+        String editado = " [EDITADO]";
+        String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
+        
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        query.setParameter(1, 3L);
+        
+        Author author = query.getSingleResult();
+        assertNotNull(author);
+        String tituloEditado = author.getName() + editado;
+        
+        author.setName(tituloEditado);        
         em.merge(author);
         em.flush();
-        Author updatedAuthor = em.find(Author.class, 2L);
-        assertEquals(newName, updatedAuthor.getName());            
+        
+        author = query.getSingleResult();
+        
+        assertEquals(tituloEditado, author.getName());
     }
     /*
     @Test

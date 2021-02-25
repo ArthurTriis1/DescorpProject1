@@ -81,7 +81,6 @@ public class AddressCrudTest extends AbstractBasicTest{
         library.setAddress(null);
         Address deletedAddressOflibrary = em.find(Library.class, 1L).getAddress();
         assertNull(deletedAddressOflibrary);
-
     }
        
 }

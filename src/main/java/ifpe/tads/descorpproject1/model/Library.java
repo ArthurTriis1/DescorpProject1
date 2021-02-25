@@ -37,6 +37,10 @@ import javax.persistence.Table;
             @NamedQuery(
                     name="Library.PorLivro",
                     query="SELECT l FROM Library l JOIN l.books book WHERE book.id = :bookId"
+            ),
+            @NamedQuery(
+                    name="Library.PorTitulo",
+                    query="SELECT l FROM Library l JOIN l.books book WHERE book.title = :title"
             )
         }
 )

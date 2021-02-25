@@ -18,6 +18,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -34,6 +35,10 @@ import javax.persistence.Table;
             @NamedQuery(
                     name="Book.PorId",
                     query="SELECT b FROM Book b WHERE b.id = :bookId"
+            ),
+            @NamedQuery(
+                    name="Book.PorTitulo",
+                    query="SELECT b FROM Book b WHERE b.title = :title"
             )
         }
 )
