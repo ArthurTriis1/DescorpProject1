@@ -6,6 +6,7 @@
 package ifpe.tads.descorpproject1.model;
 
 import java.util.Date;
+import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -31,18 +32,37 @@ public class ManagerCrudTest extends AbstractBasicTest{
     
     @Test
     public void readManager() {
-        Manager manager = em.find(Manager.class, 3L);
-        assertNotNull(manager);
+        //Manager manager = em.find(Manager.class, 3L);
+        
+        String jpql = "SELECT m FROM Manager m WHERE m.id = ?1";
+        TypedQuery<Manager> query = em.createQuery(jpql, Manager.class);
+        query.setParameter(1, 3L);
+        
+        Manager manager = query.getSingleResult();
+        
+        assertNotNull(manager); 
+        
+        assertEquals("Jão", manager.getName());
+             
         assertEquals("887664113" , manager.getLegalDocument());
+        
     }
     
         @Test
     public void updateManager(){
         String newName = "Jão";
-        Manager manager = em.find(Manager.class, 3L);
-        manager.setName(newName);
+        
+        String jpql = "SELECT m FROM Manager m WHERE m.id = ?1";
+        
+        TypedQuery<Manager> query = em.createQuery(jpql, Manager.class);
+        query.setParameter(1, 3L);
+        
+        Manager updatedmanager = query.getSingleResult();
+        
+        //Manager manager = em.find(Manager.class, 3L);
+        updatedmanager.setName(newName);
         em.clear();        
-        em.merge(manager);
+        em.merge(updatedmanager);
         em.flush();
         Manager updatedManager = em.find(Manager.class, 3L);
         assertEquals(newName, updatedManager.getName());

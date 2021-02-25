@@ -6,6 +6,7 @@
 package ifpe.tads.descorpproject1.model;
 
 import java.util.Date;
+import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
@@ -32,14 +33,29 @@ public class SellerCrudTest extends AbstractBasicTest{
     
     @Test
     public void readSeller() {
-        Seller seller = em.find(Seller.class, 2L);
+       // Seller seller = em.find(Seller.class, 2L);
+       
+        String jpql = "SELECT s FROM Seller s WHERE s.id = ?1";
+        TypedQuery<Seller> query = em.createQuery(jpql, Seller.class);
+        query.setParameter(1, 1L);
+        
+        Seller seller = query.getSingleResult();
+       
         assertNotNull(seller);
-        assertEquals("7789954432" , seller.getLegalDocument());
+        assertEquals("7789906657" , seller.getLegalDocument());
     }
     
     public void updateSeller(){
         String newName = "new name";
-        Seller seller = em.find(Seller.class, 3L);
+        //Seller seller = em.find(Seller.class, 3L);
+        
+        String jpql = "SELECT s FROM Seller s WHERE s.id = ?1";
+        
+        TypedQuery<Seller> query = em.createQuery(jpql, Seller.class);
+        query.setParameter(1, 3L);
+        
+        Seller seller = query.getSingleResult();
+        
         seller.setName(newName);
         em.clear();        
         em.merge(seller);

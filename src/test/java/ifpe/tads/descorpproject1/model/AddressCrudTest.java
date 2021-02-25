@@ -6,6 +6,7 @@
 package ifpe.tads.descorpproject1.model;
 
 import ifpe.tads.descorpproject1.enums.BrazilianStates;
+import javax.persistence.TypedQuery;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -54,7 +55,14 @@ public class AddressCrudTest extends AbstractBasicTest{
     
     @Test
     public void readAddress() {
-        Library library = em.find(Library.class, 2L);
+        //Library library = em.find(Library.class, 2L);
+        
+        String jpql = "SELECT l FROM Library l WHERE l.id = ?1";
+        TypedQuery<Library> query = em.createQuery(jpql, Library.class);
+        query.setParameter(1, 2L);
+        
+        Library library = query.getSingleResult();
+        
         assertNotNull(library);
         assertEquals("50761222" , library.getAddress().getPostalCode());
 
@@ -64,7 +72,15 @@ public class AddressCrudTest extends AbstractBasicTest{
     public void updateAddress() {
         String newComplement = "new complement";
         
-        Library library = em.find(Library.class, 2L);
+        //Library library = em.find(Library.class, 2L);
+        
+        String jpql = "SELECT l FROM Library l WHERE l.id = ?1";
+        
+        TypedQuery<Library> query = em.createQuery(jpql, Library.class);
+        query.setParameter(1, 3L);
+        
+        Library library = query.getSingleResult();
+        
         library.getAddress().setComplement(newComplement);
         
         em.clear();        
