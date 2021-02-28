@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: ifpe.tads.descorpproject1.model.AuthorCrudTest
--------------------------------------------------------------------------------
-Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.466 sec
