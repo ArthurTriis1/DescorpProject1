@@ -5,6 +5,7 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import ifpe.tads.descorpproject1.enums.BrazilianStates;
 import java.util.List;
 import javax.persistence.TypedQuery;
 import org.junit.Test;
@@ -21,6 +22,16 @@ public class LibraryCrudTest extends AbstractBasicTest{
         Library library = new Library();
         library.setName("Sebo bom aconchego");
         
+        Address address = new Address();
+        
+        address.setComplement("B1");
+        address.setNumber(728);
+        address.setPostalCode("41.940-370");
+        address.setState(BrazilianStates.AC);
+        address.setStreet("Rua Dtr Emilio");
+        address.setDistrict("Pena");
+       
+        library.setAddress(address);
         em.persist(library);
         em.flush();
         assertNotNull(library.getId());
@@ -31,6 +42,17 @@ public class LibraryCrudTest extends AbstractBasicTest{
         Library library = new Library();
         library.setName("Loja do saber");
         
+        Address address = new Address();
+        
+        address.setComplement("B2");
+        address.setNumber(888);
+        address.setPostalCode("49.044-470");
+        address.setState(BrazilianStates.AC);
+        address.setStreet("Rua Dtr Germano");
+        address.setDistrict("Iburs");
+       
+        library.setAddress(address);
+
         Book book = new Book();
         book.setTitle("Thor: O Cerco");
         book.setPublisher("Marvel");

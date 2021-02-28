@@ -20,11 +20,11 @@ public class SellerCrudTest extends AbstractBasicTest{
         Seller seller = new Seller();
         seller.setName("Seller");
         seller.setBirthDay(new Date());
-        seller.setLegalDocument("009988776655");
+        seller.setLegalDocument("87172656067");
         seller.setPayment(1600.00);
         seller.addPhone("77777-7777");
         seller.setArea("Quadrinhos");
-        
+        seller.setEmail("seller@gmail.com");
         em.persist(seller);
         em.flush();
         assertNotNull(seller.getId());

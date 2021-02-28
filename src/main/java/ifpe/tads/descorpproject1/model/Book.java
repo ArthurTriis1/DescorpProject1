@@ -23,6 +23,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -48,19 +51,25 @@ public class Book implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotNull
     @Column(name = "TITLE", length = 150, nullable = false)
     private String title;
     
+    @NotNull
+    @Max(2100)
     @Column(name = "RELEASE_YEAR")
     private Integer releaseYear;
     
+    @NotNull
     @Column(name = "PUBLISHER", length = 150, nullable = false)
     private String publisher;
     
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "CONDITION", length = 150, nullable = false)
     private Condition condition;
     
+    @DecimalMin("0.01")
     @Column(name = "PRICE", length = 150, nullable = true)
     private Double price;
     

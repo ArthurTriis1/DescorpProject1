@@ -6,7 +6,11 @@
 package ifpe.tads.descorpproject1.model;
 
 import ifpe.tads.descorpproject1.enums.BrazilianStates;
+import java.util.Set;
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import org.hamcrest.CoreMatchers;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
@@ -30,7 +34,7 @@ public class AddressCrudTest extends AbstractBasicTest{
     
         String complement = "complemento";
     
-        String postalCode = "cep";
+        String postalCode = "13.606-641";
     
         BrazilianStates state = BrazilianStates.PE;
         
@@ -50,7 +54,7 @@ public class AddressCrudTest extends AbstractBasicTest{
         em.persist(library);
         em.flush();
         assertNotNull(library.getId());
-        assertEquals(library.getAddress().getComplement(), complement);
+        assertEquals(library.getAddress().getPostalCode(), postalCode);
     }
     
     @Test
@@ -64,7 +68,7 @@ public class AddressCrudTest extends AbstractBasicTest{
         Library library = query.getSingleResult();
         
         assertNotNull(library);
-        assertEquals("50761222" , library.getAddress().getPostalCode());
+        assertEquals("50.761-222" , library.getAddress().getPostalCode());
 
     }
     
@@ -91,12 +95,18 @@ public class AddressCrudTest extends AbstractBasicTest{
 
     }
     
-    @Test
+    @Test(expected = ConstraintViolationException.class)
     public void deleteAddress() {
         Library library = em.find(Library.class, 1L);
         library.setAddress(null);
-        Address deletedAddressOflibrary = em.find(Library.class, 1L).getAddress();
-        assertNull(deletedAddressOflibrary);
+        try{
+            em.flush();
+        }catch(ConstraintViolationException ex){
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            assertEquals(constraintViolations.size(), 1);
+            constraintViolations.size();
+            throw ex;
+        }
     }
        
 }

@@ -22,9 +22,11 @@ public class ManagerCrudTest extends AbstractBasicTest{
         Manager manager = new Manager();
         manager.setName("Manager");
         manager.setBirthDay(new Date());
-        manager.setLegalDocument("7726678890");
+        manager.setLegalDocument("78042939094");
         manager.setPayment(2200.00);
         manager.addPhone("99999-9999");
+        manager.setEmail("manager@gmail.com");
+        manager.addPhone("88166789");
         em.persist(manager);
         em.flush();
         assertNotNull(manager.getId());
@@ -44,7 +46,7 @@ public class ManagerCrudTest extends AbstractBasicTest{
         
         assertEquals("Jão", manager.getName());
              
-        assertEquals("887664113" , manager.getLegalDocument());
+        assertEquals("68693246038" , manager.getLegalDocument());
         
     }
     
@@ -61,6 +63,7 @@ public class ManagerCrudTest extends AbstractBasicTest{
         
         //Manager manager = em.find(Manager.class, 3L);
         updatedmanager.setName(newName);
+        updatedmanager.setLegalDocument("68693246038");
         em.clear();        
         em.merge(updatedmanager);
         em.flush();

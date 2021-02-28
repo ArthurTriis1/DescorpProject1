@@ -25,6 +25,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.br.CPF;
 
 /**
  *
@@ -42,19 +49,32 @@ public abstract class UserAbstract implements Serializable{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long id;
     
+    @NotNull
+    @NotBlank
+    @Size(max=15)
     @Column(name = "NAME", nullable = false)
     private String name;
     
+    @CPF
     @Column(name = "LEGAL_DOCUMENT", nullable = false)
     private String legalDocument;
     
+    @Past
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDay;
     
+    @NotNull
+    @DecimalMin("1000.00")
     @Column(name = "PAYMENT")
     private Double payment;
     
+    @NotNull
+    @Email
+    @Column(name = "EMAIL")
+    private String email;
+    
+    @Size(min = 1)
     @ElementCollection
     @CollectionTable(name = "TB_PHONE",
             joinColumns = @JoinColumn(name = "ID_USER", nullable = false))
@@ -111,6 +131,15 @@ public abstract class UserAbstract implements Serializable{
     public void setPayment(Double payment) {
         this.payment = payment;
     }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
     
     
     

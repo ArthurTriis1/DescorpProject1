@@ -25,6 +25,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -50,9 +53,13 @@ public class Library implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
+    @NotNull
+    @NotBlank
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     
+    @NotNull
+    @Valid
     @Embedded
     private Address address;
     
