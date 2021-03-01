@@ -57,6 +57,7 @@ public class LibraryCrudTest extends AbstractBasicTest{
         book.setTitle("Thor: O Cerco");
         book.setPublisher("Marvel");
         book.setReleaseYear(2012);
+        book.setBrazilianISBN("978-65-667-4895-7");
         library.addBook(book);
         
         em.persist(library);

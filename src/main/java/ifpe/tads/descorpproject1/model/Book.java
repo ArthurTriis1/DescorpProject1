@@ -6,6 +6,7 @@
 package ifpe.tads.descorpproject1.model;
 
 import ifpe.tads.descorpproject1.enums.Condition;
+import ifpe.tads.descorpproject1.validators.BrazilianISBNValidate;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.CascadeType;
@@ -25,7 +26,9 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 /**
  *
@@ -76,6 +79,14 @@ public class Book implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = true, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_AUTHOR", referencedColumnName = "ID")
     private Author author;
+    
+    @NotNull
+    @NotBlank
+    @Pattern(regexp = "0*(?=.{17}$)97(?:8|9)([ -])\\d{1,5}\\1\\d{1,7}\\1\\d{1,6}\\1\\d$", 
+             message = "{ifpe.tads.descorpproject1.Book.ISBNError}")
+    @BrazilianISBNValidate
+    @Column(name = "BR_ISBN", length = 25, nullable = true)
+    private String brazilianISBN;
 
     public String getPublisher() {
         return publisher;
@@ -136,6 +147,16 @@ public class Book implements Serializable {
     public Book() {
         this.condition = Condition.NEW;
     }
+
+    public String getBrazilianISBN() {
+        return brazilianISBN;
+    }
+
+    public void setBrazilianISBN(String brazilianISBN) {
+        this.brazilianISBN = brazilianISBN;
+    }
+    
+    
 
     @Override
     public int hashCode() {

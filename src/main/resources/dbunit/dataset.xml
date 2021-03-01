@@ -13,6 +13,7 @@
         publisher="Cia das letras" 
         id_author="1"
         condition="MANIPULATED"
+        BR_ISBN="978-85-543-4355-7"
     />
     
     <TB_BOOK 
@@ -21,6 +22,7 @@
         publisher="Cia das letras" 
         id_author="1"
         condition="SEMI_NEW"
+        BR_ISBN="978-85-783-9955-7"
     />
     
     <TB_BOOK 
@@ -29,6 +31,7 @@
         publisher="Cia das letras" 
         id_author="1"
         condition="NEW"
+        BR_ISBN="978-85-889-6789-8"
     />
     
     <TB_BOOK 
@@ -37,6 +40,7 @@
         publisher="Sociedade dos Cem bibliófilos do Brasil" 
         id_author="1"
         condition="MANIPULATED"
+        BR_ISBN="978-85-993-4300-2"
     />
     <!--FIM-->
         
@@ -47,6 +51,7 @@
         publisher="TUCA" 
         id_author="2"
         condition="SEMI_NEW"
+        BR_ISBN="978-85-873-4665-0"
     />   
     
     <TB_BOOK 
@@ -55,6 +60,7 @@
         publisher="Alfaguara" 
         id_author="2"
         condition="NEW"
+        BR_ISBN="978-85-500-4655-1"
     />
     <!--FIM-->
     
@@ -65,6 +71,7 @@
         publisher="Brasília" 
         id_author="3"
         condition="SEMI_NEW"
+        BR_ISBN="978-85-588-9995-2"
     />
     
     <TB_BOOK 
@@ -73,6 +80,7 @@
         publisher="O Cruzeiro" 
         id_author="3"
         condition="NEW"
+        BR_ISBN="978-85-773-7755-9"
     />
     
     <TB_BOOK 
@@ -81,6 +89,7 @@
         publisher="Civilização Brasileira" 
         id_author="3"
         condition="MANIPULATED"
+        BR_ISBN="978-85-543-6655-9"
     />
     <!--FIM-->
     
@@ -91,6 +100,7 @@
         publisher="Rocco" 
         id_author="4"
         condition="MANIPULATED"
+        BR_ISBN="978-85-667-2354-0"
     />
     
     <TB_BOOK 
@@ -99,6 +109,7 @@
         publisher="Rocco" 
         id_author="4"
         condition="NEW"
+        BR_ISBN="978-95-903-4378-0"
     />
     
     <TB_BOOK 
@@ -107,6 +118,7 @@
         publisher="Ática" 
         id_author="4"
         condition="SEMI_NEW"
+        BR_ISBN="978-85-543-8955-5"
     />
     
     <TB_BOOK 
@@ -115,6 +127,7 @@
         publisher="Nova Fronteira" 
         id_author="4"
         condition="MANIPULATED"
+        BR_ISBN="978-85-783-9055-0"
     />
     <!--FIM-->
     
@@ -125,6 +138,7 @@
         publisher="José Olympio" 
         id_author="5"
         condition="MANIPULATED"
+        BR_ISBN="978-85-893-0095-5"
     />
     
     <TB_BOOK 
@@ -133,6 +147,7 @@
         publisher="Nova Fronteira" 
         id_author="5"
         condition="MANIPULATED"
+        BR_ISBN="978-85-883-4445-3"
     />
     
     <TB_BOOK 
@@ -141,6 +156,7 @@
         publisher="Universal" 
         id_author="5"
         condition="MANIPULATED"
+        BR_ISBN="978-85-543-4888-7"
     />
     
     <TB_BOOK 
@@ -149,6 +165,7 @@
         publisher="José Olympio" 
         id_author="5"
         condition="MANIPULATED"
+        BR_ISBN="978-85-666-4355-7"
     />
     
     <TB_BOOK 
@@ -157,6 +174,7 @@
         publisher="José Olympio" 
         id_author="5"
         condition="MANIPULATED"
+        BR_ISBN="978-85-773-4355-2"
     />
     <!--FIM-->
     

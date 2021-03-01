@@ -24,6 +24,7 @@ public class BookCrudTest extends AbstractBasicTest{
         book.setTitle("Sandman");
         book.setPublisher("Panini");
         book.setReleaseYear(1964);
+        book.setBrazilianISBN("978-85-883-6678-7");
         
         String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
         TypedQuery<Author> query = em.createQuery(jpql, Author.class);
@@ -46,6 +47,7 @@ public class BookCrudTest extends AbstractBasicTest{
         book.setTitle("Astronauta");
         book.setPublisher("Panini Brasil");
         book.setReleaseYear(2016);
+        book.setBrazilianISBN("978-85-899-4312-7");
         
         em.persist(book);
         em.flush();
@@ -58,6 +60,7 @@ public class BookCrudTest extends AbstractBasicTest{
         book1.setTitle("Alias");
         book1.setReleaseYear(2008);
         book1.setPublisher("Panini Comics");
+        book1.setBrazilianISBN("978-85-883-4355-7");
 
         Author author = new Author();
         author.setName("Brian Michael Bendis");

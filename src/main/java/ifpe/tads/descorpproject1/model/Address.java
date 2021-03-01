@@ -49,7 +49,7 @@ public class Address implements Serializable {
     
     @NotNull
     @Pattern(regexp = "[0-90]{2}.[0-9]{3}-[0-9]{3}", 
-             message = "{ifpe.tads.descorpprojetc1.postalcode}")
+             message = "{ifpe.tads.descorpproject1.Address.postalcode}")
     @Column(name = "ADD_POSTAL_CODE")
     private String postalCode;
     
