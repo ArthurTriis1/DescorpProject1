@@ -7,8 +7,15 @@ package ifpe.tads.descorpproject1.model;
 
 import ifpe.tads.descorpproject1.enums.BrazilianStates;
 import java.util.List;
+import java.util.Set;
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
 
 /**
@@ -160,5 +167,42 @@ public class LibraryCrudTest extends AbstractBasicTest{
         em.flush();
         
         assertEquals(0, query.getResultList().size());
+    }
+    
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirBibltecaInvalida() {
+        Library library = new Library();
+        try {
+            library.setName("");
+    
+            Address address = new Address();
+            
+            address.setNumber(728);
+            address.setPostalCode("41940370");
+            address.setState(BrazilianStates.AC);
+            address.setStreet("Rua Dtr Emilio");
+            address.setDistrict("Pena");
+    
+            library.setAddress(address);
+            em.persist(library);
+            em.flush();
+            assertNotNull(library.getId());
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            
+            
+            for (ConstraintViolation violation: constraintViolations) {
+                assertThat(violation.getMessage(),
+                    CoreMatchers.anyOf(
+                        startsWith("O nome deve ser valido"),
+                        startsWith("Número de cep invalido, exemplo: XX.XXX-XXX")
+                    ));
+            }
+            
+            assertEquals(2, constraintViolations.size());
+            assertNull(library.getId());
+            throw ex;
+        }
     }
 }

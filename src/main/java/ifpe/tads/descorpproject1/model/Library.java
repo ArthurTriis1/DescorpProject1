@@ -53,12 +53,12 @@ public class Library implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull
-    @NotBlank
+    @NotNull(message = "O nome deve ser valido")
+    @NotBlank(message = "O nome deve ser valido")
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     
-    @NotNull
+    @NotNull(message = "O endereço deve ser valido")
     @Valid
     @Embedded
     private Address address;
