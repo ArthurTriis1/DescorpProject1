@@ -20,6 +20,7 @@ import org.junit.runners.Suite;
                         ifpe.tads.descorpproject1.model.LibraryCrudTest.class,
                         ifpe.tads.descorpproject1.model.ManagerCrudTest.class,
                         ifpe.tads.descorpproject1.model.SellerCrudTest.class,
+                        ifpe.tads.descorpproject1.model.JpqlTest.class
                     })
 public class TesteSuite {
     

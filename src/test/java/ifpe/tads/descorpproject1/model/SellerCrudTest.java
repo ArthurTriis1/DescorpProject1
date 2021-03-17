@@ -135,15 +135,16 @@ public class SellerCrudTest extends AbstractBasicTest{
         try {
             em.flush();
         } catch (ConstraintViolationException ex) {
-    
-            Iterator<ConstraintViolation<?>> violationIteratior =
-                ex.getConstraintViolations().iterator();
-            ConstraintViolation violation = violationIteratior.next();
-            System.out.println(violation.getMessage());
-            assertEquals("O nome do usuario deve ser valido", violation.getMessage());
-            ConstraintViolation violation2 = violationIteratior.next();
-            assertEquals("A Area de atuação no vendedor não deve estar vazia",
-                violation2.getMessage());
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            for (ConstraintViolation violation: constraintViolations) {
+                System.out.println(violation.getMessage());
+                assertThat(violation.getMessage(),
+                    CoreMatchers.anyOf(
+                        startsWith("O nome do usuario deve ser valido"),
+                        startsWith("A Area de atuação no vendedor não deve estar vazia")
+                    ));
+            }
+
             assertEquals(2, ex.getConstraintViolations().size());
             throw ex;
         }
