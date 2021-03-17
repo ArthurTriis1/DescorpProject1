@@ -68,32 +68,6 @@ public class LibraryCrudTest extends AbstractBasicTest{
     }
     
     @Test
-    public void countBooksOfLibrary() {
-        Long idLivraria = 1L;
-        
-        String jpql = "SELECT COUNT(l.books) FROM Library l WHERE l.id = ?1";
-        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
-        query.setParameter(1, idLivraria);
-        
-        Long quantidade = query.getSingleResult();
-        
-        assertEquals(10, quantidade.longValue());
-    }
-    
-    @Test
-    public void countLibraryHasBook() {
-        Long idLivro = 9L;
-        
-        String jpql = "SELECT COUNT(l) FROM Library l JOIN l.books book WHERE book.id = :bookId";
-        TypedQuery<Long> query = em.createQuery(jpql, Long.class);
-        query.setParameter("bookId", idLivro);
-        
-        Long quantidade = query.getSingleResult();
-        
-        assertEquals(2, quantidade.longValue());
-    }
-    
-    @Test
     public void updateLibrary() {
         String newName = "Mascarenhas Livros";
         

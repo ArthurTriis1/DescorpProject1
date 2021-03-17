@@ -120,19 +120,6 @@ public class BookCrudTest extends AbstractBasicTest{
         assertEquals(editoraEditado, book.getPublisher());
     }
     
-    @Test
-    public void countBooksByConditionAndYear() {
-        int year = 1960;
-        
-        String jpql = "SELECT b FROM Book b WHERE b.condition = :condition AND b.releaseYear > :year";
-        TypedQuery<Book> query = em.createQuery(jpql, Book.class);
-        query.setParameter("condition", Condition.MANIPULATED);
-        query.setParameter("year", year);
-        
-        List<Book> books = query.getResultList();
-        
-        assertEquals(6, books.size());
-    }
     /*
     @Test
     public void removeBook() {        

@@ -43,7 +43,7 @@ import javax.validation.constraints.NotNull;
             ),
             @NamedQuery(
                     name="Library.PorTitulo",
-                    query="SELECT l FROM Library l JOIN l.books book WHERE book.title = :title"
+                    query="SELECT l FROM Library l JOIN l.books book WHERE book.title = :bookTitle ORDER BY l.id ASC"
             )
         }
 )
