@@ -162,5 +162,31 @@ public class AddressCrudTest extends AbstractBasicTest{
             throw ex;
         }
     }
+    
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarEnderecoInvalido() {
+        String newStreet = "";
+    
+        String jpql = "SELECT l FROM Library l WHERE l.id = ?1";
+    
+        TypedQuery<Library> query = em.createQuery(jpql, Library.class);
+        query.setParameter(1, 3L);
+    
+        Library library = query.getSingleResult();
+    
+        library.getAddress().setStreet(newStreet);
+        
+        try {
+            em.clear();
+            em.merge(library);
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("O nome da rua não deve ser vazio", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
        
 }

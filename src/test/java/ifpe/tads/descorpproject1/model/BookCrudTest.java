@@ -203,4 +203,25 @@ public class BookCrudTest extends AbstractBasicTest{
             throw ex;
         }
     }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarLivroInvalido() {
+        Long idLivro = 1L;
+    
+        TypedQuery<Book> query = em.createNamedQuery("Book.PorId", Book.class);
+        query.setParameter("bookId", idLivro);
+    
+        Book book = query.getSingleResult();
+    
+        book.setTitle("");
+        
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("O nome de um livro não deve ser estar em branco", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }

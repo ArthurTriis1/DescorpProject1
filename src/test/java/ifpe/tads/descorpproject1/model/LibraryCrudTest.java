@@ -205,4 +205,24 @@ public class LibraryCrudTest extends AbstractBasicTest{
             throw ex;
         }
     }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarBibliotecaInvalida() {
+        String jpql = "SELECT l FROM Library l WHERE l.id = :libId";
+        TypedQuery<Library> query = em.createQuery(jpql, Library.class);
+        query.setParameter("libId", 3L);
+    
+        Library library = query.getSingleResult();
+    
+        library.setName("");
+    
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("O nome deve ser valido", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }

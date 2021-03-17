@@ -13,7 +13,14 @@ import org.junit.runners.Suite;
  * @author masc1
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({})
+@Suite.SuiteClasses({
+                        ifpe.tads.descorpproject1.model.BookCrudTest.class,
+                        ifpe.tads.descorpproject1.model.AddressCrudTest.class,
+                        ifpe.tads.descorpproject1.model.AuthorCrudTest.class,
+                        ifpe.tads.descorpproject1.model.LibraryCrudTest.class,
+                        ifpe.tads.descorpproject1.model.ManagerCrudTest.class,
+                        ifpe.tads.descorpproject1.model.SellerCrudTest.class,
+                    })
 public class TesteSuite {
     
 }

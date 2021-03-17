@@ -126,4 +126,25 @@ public class ManagerCrudTest extends AbstractBasicTest{
             throw ex;
         }
     }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarGerenteInvalido() {
+        String jpql = "SELECT m FROM Manager m WHERE m.id = ?1";
+    
+        TypedQuery<Manager> query = em.createQuery(jpql, Manager.class);
+        query.setParameter(1, 3L);
+    
+        Manager updatedmanager = query.getSingleResult();
+    
+        updatedmanager.setName("");
+        
+        try {
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("O nome do usuario deve ser valido", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }
