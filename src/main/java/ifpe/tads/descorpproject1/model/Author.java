@@ -34,7 +34,7 @@ public class Author implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank
+    @NotBlank(message = "O Nome do autor deve ser valido")
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     

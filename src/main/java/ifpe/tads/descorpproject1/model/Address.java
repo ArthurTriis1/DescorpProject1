@@ -26,34 +26,34 @@ import javax.validation.constraints.Size;
 public class Address implements Serializable {
     
     @NotNull
-    @NotBlank
+    @NotBlank(message = "O nome da rua não deve ser vazio")
     @Size(max = 150)
     @Column(name = "ADD_STREET")
     private String street;
     
     @NotNull
-    @NotBlank
+    @NotBlank(message = "O nome do bairro não deve ser vazio")
     @Size(max = 150)
     @Column(name = "ADD_DISTRICT")
     private String district;
     
     @NotNull
-    @Min(1)
-    @Max(99999)
+    @Min(value = 1, message = "O numero da casa deve ser entre 1 e 9999")
+    @Max(value = 9999, message = "O numero da casa deve ser entre 1 e 9999")
     @Column(name = "ADD_NUMBER")
     private Integer number;
     
-    @Size(max = 30)
+    @Size(max = 30, message = "O complemento deve ter no máximo 30 caracteres")
     @Column(name = "ADD_COMPLEMENT")
     private String complement;
     
     @NotNull
     @Pattern(regexp = "[0-90]{2}.[0-9]{3}-[0-9]{3}", 
-             message = "{ifpe.tads.descorpproject1.Address.postalcode}")
+             message = "Número de cep invalido, exemplo: XX.XXX-XXX")
     @Column(name = "ADD_POSTAL_CODE")
     private String postalCode;
     
-    @NotNull
+    @NotNull(message = "A sigla de estado deve ser válida")
     @Enumerated(EnumType.STRING)
     @Column(name = "ADD_STATE")
     private BrazilianStates state;

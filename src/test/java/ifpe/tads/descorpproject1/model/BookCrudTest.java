@@ -11,6 +11,14 @@ import java.util.List;
 import javax.persistence.TypedQuery;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertThat;
+import org.hamcrest.CoreMatchers;
+import static org.hamcrest.CoreMatchers.startsWith;
+import java.util.Set;
 
 /**
  *
@@ -149,4 +157,50 @@ public class BookCrudTest extends AbstractBasicTest{
         assertEquals(0, bookQuery.getResultList().size());
     }
     */
+
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirBookInvalido() {
+        Book book = new Book();
+        try {
+            book.setTitle("");
+            book.setPublisher("");
+            book.setReleaseYear(2101);
+            book.setBrazilianISBN("978-35-866683-6678-7");
+            book.setPrice(0.00);
+            book.setCondition(null);
+
+            String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
+            TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+            query.setParameter(1, 2L);
+
+            Author author = query.getSingleResult();
+            assertEquals("João Cabral", author.getName());
+
+            book.setAuthor(author);
+
+            em.persist(book);
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+
+
+            for (ConstraintViolation violation: constraintViolations) {
+                assertThat(violation.getMessage(),
+                        CoreMatchers.anyOf(
+                            startsWith("ISBN invalido. O ISBN deve ser brasileiro e com o prefixo" +
+                                " GS1."),
+                            startsWith("O nome de um livro não deve ser estar em branco"),
+                            startsWith("Não trabalhamos com datas acima do ano 2100"),
+                            startsWith("Um livro tem o valor minimo de R$0,01"),
+                            startsWith("Um livro deve conter um nome de editora valida"),
+                            startsWith("Um livro deve conter um estado valido"),
+                            startsWith("ISBN invalido. O ISBN deve ser brasileiro, com o codigo 65 ou 85.")
+                        ));
+            }
+
+            assertEquals(7, constraintViolations.size());
+            assertNull(book.getId());
+            throw ex;
+        }
+    }
 }

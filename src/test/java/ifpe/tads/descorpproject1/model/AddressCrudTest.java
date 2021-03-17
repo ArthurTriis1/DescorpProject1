@@ -11,10 +11,10 @@ import javax.persistence.TypedQuery;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import org.hamcrest.CoreMatchers;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -105,6 +105,60 @@ public class AddressCrudTest extends AbstractBasicTest{
             Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
             assertEquals(constraintViolations.size(), 1);
             constraintViolations.size();
+            throw ex;
+        }
+    }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirAutorInvalido() {
+        Library library = new Library();
+        library.setName("Sebo com endereço");
+    
+        String street = "";
+    
+        String district = "";
+    
+        Integer number = 10000;
+    
+        String complement = "Esse é um complemento com muito mais que trinta caracteres, escrito " +
+            "para dar erro";
+    
+        String postalCode = "13606641";
+    
+        BrazilianStates state = null;
+    
+    
+        Address address = new Address();
+        try {
+            address.setComplement(complement);
+            address.setNumber(number);
+            address.setPostalCode(postalCode);
+            address.setState(state);
+            address.setStreet(street);
+            address.setDistrict(district);
+    
+            library.setAddress(address);
+    
+            em.persist(library);
+            em.flush();
+            assertNotNull(library.getId());
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            
+            for (ConstraintViolation violation: constraintViolations) {
+                assertThat(violation.getMessage(),
+                    CoreMatchers.anyOf(
+                        startsWith("O nome da rua não deve ser vazio"),
+                        startsWith("O nome do bairro não deve ser vazio"),
+                        startsWith("O numero da casa deve ser entre 1 e 9999"),
+                        startsWith("O complemento deve ter no máximo 30 caracteres"),
+                        startsWith("Número de cep invalido, exemplo: XX.XXX-XXX"),
+                        startsWith("A sigla de estado deve ser válida")
+                    ));
+            }
+            
+            assertEquals(6, constraintViolations.size());
+            assertNull(library.getId());
             throw ex;
         }
     }

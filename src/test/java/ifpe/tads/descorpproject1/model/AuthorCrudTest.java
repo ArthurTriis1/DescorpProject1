@@ -6,7 +6,15 @@
 package ifpe.tads.descorpproject1.model;
 
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+
+import java.util.Set;
+
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
 
 /**
@@ -98,4 +106,38 @@ public class AuthorCrudTest extends AbstractBasicTest{
         assertNull(deletedAuthor);
     }
     */
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirAutorInvalido() {
+        Author author = new Author();
+        try {
+            author.setName("");
+    
+            String jpql = "SELECT b FROM Book b WHERE b.id = ?1";
+            TypedQuery<Book> query = em.createQuery(jpql, Book.class);
+            query.setParameter(1, 1L);
+    
+            Book book = query.getSingleResult();
+            author.addBook(book);
+            em.persist(author);
+            em.flush();
+    
+            assertNotNull(author.getId());
+            assertEquals(1, author.getBooks().size());
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            
+            
+            for (ConstraintViolation violation: constraintViolations) {
+                assertThat(violation.getMessage(),
+                    CoreMatchers.anyOf(
+                        startsWith("O Nome do autor deve ser valido")
+                    ));
+            }
+            
+            assertEquals(1, constraintViolations.size());
+            assertNull(author.getId());
+            throw ex;
+        }
+    }
 }

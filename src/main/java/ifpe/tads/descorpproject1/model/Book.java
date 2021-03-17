@@ -9,21 +9,7 @@ import ifpe.tads.descorpproject1.enums.Condition;
 import ifpe.tads.descorpproject1.validators.BrazilianISBNValidate;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotBlank;
@@ -36,6 +22,7 @@ import javax.validation.constraints.Pattern;
  */
 @Entity
 @Table(name = "TB_BOOK")
+@Access(AccessType.FIELD)
 @NamedQueries(
         {
             @NamedQuery(
@@ -55,24 +42,29 @@ public class Book implements Serializable {
     private Long id;
     
     @NotNull
-    @Column(name = "TITLE", length = 150, nullable = false)
+    @NotBlank(message = "O nome de um livro não deve ser estar em branco")
+    @Column(name = "TITLE",
+            length = 150,
+            nullable = false)
     private String title;
     
     @NotNull
-    @Max(2100)
+    @Max(value = 2100,
+         message = "Não trabalhamos com datas acima do ano 2100")
     @Column(name = "RELEASE_YEAR")
     private Integer releaseYear;
     
     @NotNull
+    @NotBlank(message = "Um livro deve conter um nome de editora valida")
     @Column(name = "PUBLISHER", length = 150, nullable = false)
     private String publisher;
     
-    @NotNull
+    @NotNull(message = "Um livro deve conter um estado valido")
     @Enumerated(EnumType.STRING)
     @Column(name = "CONDITION", length = 150, nullable = false)
     private Condition condition;
     
-    @DecimalMin("0.01")
+    @DecimalMin(value = "0.01", message = "Um livro tem o valor minimo de R$0,01")
     @Column(name = "PRICE", length = 150, nullable = true)
     private Double price;
     
@@ -83,7 +75,7 @@ public class Book implements Serializable {
     @NotNull
     @NotBlank
     @Pattern(regexp = "0*(?=.{17}$)97(?:8|9)([ -])\\d{1,5}\\1\\d{1,7}\\1\\d{1,6}\\1\\d$", 
-             message = "{ifpe.tads.descorpproject1.Book.ISBNError}")
+             message = "ISBN invalido. O ISBN deve ser brasileiro e com o prefixo GS1.")
     @BrazilianISBNValidate
     @Column(name = "BR_ISBN", length = 25, nullable = true)
     private String brazilianISBN;
