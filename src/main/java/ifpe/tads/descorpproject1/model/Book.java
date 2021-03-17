@@ -5,6 +5,7 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import ifpe.tads.descorpproject1.constants.Constants;
 import ifpe.tads.descorpproject1.enums.Condition;
 import ifpe.tads.descorpproject1.validators.BrazilianISBNValidate;
 import java.io.Serializable;
@@ -42,7 +43,7 @@ public class Book implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank(message = "O nome de um livro não deve ser estar em branco")
+    @NotBlank(message = Constants.Erros.Book.TITLE)
     @Column(name = "TITLE",
             length = 150,
             nullable = false)
@@ -50,21 +51,21 @@ public class Book implements Serializable {
     
     @NotNull
     @Max(value = 2100,
-         message = "Não trabalhamos com datas acima do ano 2100")
+         message = Constants.Erros.Book.RELEASE_YEAR )
     @Column(name = "RELEASE_YEAR")
     private Integer releaseYear;
     
     @NotNull
-    @NotBlank(message = "Um livro deve conter um nome de editora valida")
+    @NotBlank(message = Constants.Erros.Book.PUBLISHER )
     @Column(name = "PUBLISHER", length = 150, nullable = false)
     private String publisher;
     
-    @NotNull(message = "Um livro deve conter um estado valido")
+    @NotNull(message = Constants.Erros.Book.CONDITION )
     @Enumerated(EnumType.STRING)
     @Column(name = "CONDITION", length = 150, nullable = false)
     private Condition condition;
     
-    @DecimalMin(value = "0.01", message = "Um livro tem o valor minimo de R$0,01")
+    @DecimalMin(value = "0.01", message = Constants.Erros.Book.PRICE )
     @Column(name = "PRICE", length = 150, nullable = true)
     private Double price;
     
@@ -75,7 +76,7 @@ public class Book implements Serializable {
     @NotNull
     @NotBlank
     @Pattern(regexp = "0*(?=.{17}$)97(?:8|9)([ -])\\d{1,5}\\1\\d{1,7}\\1\\d{1,6}\\1\\d$", 
-             message = "ISBN invalido. O ISBN deve ser brasileiro e com o prefixo GS1.")
+             message = Constants.Erros.Book.BR_ISBN)
     @BrazilianISBNValidate
     @Column(name = "BR_ISBN", length = 25, nullable = true)
     private String brazilianISBN;

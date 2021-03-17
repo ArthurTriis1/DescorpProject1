@@ -5,6 +5,8 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import ifpe.tads.descorpproject1.constants.Constants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,12 +55,12 @@ public class Library implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull(message = "O nome deve ser valido")
-    @NotBlank(message = "O nome deve ser valido")
+    @NotNull(message = Constants.Erros.Library.NAME)
+    @NotBlank(message = Constants.Erros.Library.NAME)
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     
-    @NotNull(message = "O endereço deve ser valido")
+    @NotNull(message = Constants.Erros.Library.ADDRESS)
     @Valid
     @Embedded
     private Address address;

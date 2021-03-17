@@ -31,6 +31,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
+
+import ifpe.tads.descorpproject1.constants.Constants;
 import org.hibernate.validator.constraints.br.CPF;
 
 /**
@@ -50,31 +52,31 @@ public abstract class UserAbstract implements Serializable{
     protected Long id;
     
     @NotNull
-    @NotBlank(message = "O nome do usuario deve ser valido")
+    @NotBlank(message = Constants.Erros.User.NAME)
     @Size(max=15)
     @Column(name = "NAME", nullable = false)
     private String name;
     
-    @CPF(message = "O cpf informado está em um formato invalido")
+    @CPF(message = Constants.Erros.User.LEGAL_DOCUMENT)
     @Column(name = "LEGAL_DOCUMENT", nullable = false)
     private String legalDocument;
     
-    @Past(message = "Datas de nascimento devem ser apenas datas passadas")
+    @Past(message = Constants.Erros.User.BIRTH_DATE)
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDay;
     
     @NotNull
-    @DecimalMin(value = "1000.00", message = "O Valor minimo de um salario é 1000.00")
+    @DecimalMin(value = "1000.00", message = Constants.Erros.User.PAYMENT)
     @Column(name = "PAYMENT")
     private Double payment;
     
     @NotNull
-    @Email(message = "E-mail invalido")
+    @Email(message = Constants.Erros.User.EMAIL)
     @Column(name = "EMAIL")
     private String email;
     
-    @NotNull(message = "Informe no minimo um telefone do usuario")
+    @NotNull(message = Constants.Erros.User.PHONE)
     @ElementCollection
     @CollectionTable(name = "TB_PHONE",
             joinColumns = @JoinColumn(name = "ID_USER", nullable = false))

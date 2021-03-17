@@ -5,6 +5,7 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import ifpe.tads.descorpproject1.constants.Constants;
 import ifpe.tads.descorpproject1.enums.BrazilianStates;
 import java.io.Serializable;
 import javax.persistence.Column;
@@ -26,34 +27,34 @@ import javax.validation.constraints.Size;
 public class Address implements Serializable {
     
     @NotNull
-    @NotBlank(message = "O nome da rua não deve ser vazio")
+    @NotBlank(message = Constants.Erros.Address.STREET)
     @Size(max = 150)
     @Column(name = "ADD_STREET")
     private String street;
     
     @NotNull
-    @NotBlank(message = "O nome do bairro não deve ser vazio")
+    @NotBlank(message = Constants.Erros.Address.DISTRICT)
     @Size(max = 150)
     @Column(name = "ADD_DISTRICT")
     private String district;
     
     @NotNull
-    @Min(value = 1, message = "O numero da casa deve ser entre 1 e 9999")
-    @Max(value = 9999, message = "O numero da casa deve ser entre 1 e 9999")
+    @Min(value = 1, message = Constants.Erros.Address.NUMBER)
+    @Max(value = 9999, message = Constants.Erros.Address.NUMBER)
     @Column(name = "ADD_NUMBER")
     private Integer number;
     
-    @Size(max = 30, message = "O complemento deve ter no máximo 30 caracteres")
+    @Size(max = 30, message = Constants.Erros.Address.COMPLEMENT )
     @Column(name = "ADD_COMPLEMENT")
     private String complement;
     
     @NotNull
     @Pattern(regexp = "[0-90]{2}.[0-9]{3}-[0-9]{3}", 
-             message = "Número de cep invalido, exemplo: XX.XXX-XXX")
+             message = Constants.Erros.Address.POSTAL_CODE )
     @Column(name = "ADD_POSTAL_CODE")
     private String postalCode;
     
-    @NotNull(message = "A sigla de estado deve ser válida")
+    @NotNull(message = Constants.Erros.Address.STATE )
     @Enumerated(EnumType.STRING)
     @Column(name = "ADD_STATE")
     private BrazilianStates state;

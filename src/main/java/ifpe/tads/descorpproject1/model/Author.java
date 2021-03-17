@@ -5,6 +5,8 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import ifpe.tads.descorpproject1.constants.Constants;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class Author implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank(message = "O Nome do autor deve ser valido")
+    @NotBlank(message = Constants.Erros.Author.NAME)
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     
