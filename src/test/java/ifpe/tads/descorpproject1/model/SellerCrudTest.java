@@ -5,9 +5,17 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.TypedQuery;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.junit.Assert.*;
 
 /**
@@ -71,4 +79,47 @@ public class SellerCrudTest extends AbstractBasicTest{
 //        Seller deletedSeller = em.find(Seller.class, 1L);
 //        assertNull(deletedSeller);
 //    }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirAutorInvalido() {
+        Seller  seller = new Seller();
+        Calendar c       = Calendar.getInstance();
+        c.set(2023, Calendar.FEBRUARY, 10);
+        
+        try {
+            seller.setName("");
+            seller.setBirthDay(c.getTime());
+            seller.setLegalDocument("sadas");
+            seller.setPayment(30.0);
+            seller.setEmail("emailinvalido");
+            seller.setPhones(null);
+            seller.setArea("");
+            em.persist(seller);
+            em.flush();
+            assertNotNull(seller.getId());
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            
+            
+            for (ConstraintViolation violation: constraintViolations) {
+                System.out.println(violation.getMessage());
+                assertThat(violation.getMessage(),
+                    
+                    CoreMatchers.anyOf(
+                        startsWith("O nome do usuario deve ser valido"),
+                        startsWith("O cpf informado está em um formato invalido"),
+                        startsWith("Datas de nascimento devem ser apenas datas passadas"),
+                        startsWith("O Valor minimo de um salario é 1000.00"),
+                        startsWith("E-mail invalido"),
+                        startsWith("Informe no minimo um telefone do usuario"),
+                        startsWith("A Area de atuação no vendedor não deve estar vazia")
+                    ));
+            }
+            
+            assertEquals(7, constraintViolations.size());
+            assertNull(seller.getId());
+            throw ex;
+        }
+    }
+
 }

@@ -5,12 +5,18 @@
  */
 package ifpe.tads.descorpproject1.model;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Set;
 import javax.persistence.TypedQuery;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.startsWith;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -22,7 +28,7 @@ public class ManagerCrudTest extends AbstractBasicTest{
         Manager manager = new Manager();
         manager.setName("Manager");
         manager.setBirthDay(new Date());
-        manager.setLegalDocument("78042939094");
+        manager.setLegalDocument("780.429.390-94");
         manager.setPayment(2200.00);
         manager.addPhone("99999-9999");
         manager.setEmail("manager@gmail.com");
@@ -77,5 +83,47 @@ public class ManagerCrudTest extends AbstractBasicTest{
         em.remove(manager);
         Manager deletedManager = em.find(Manager.class, 4L);
         assertNull(deletedManager);
+    }
+    
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void persistirAutorInvalido() {
+        Manager  manager = new Manager();
+        Calendar c = Calendar.getInstance();
+        c.set(2023, Calendar.FEBRUARY, 10);
+        
+        try {
+            manager.setName("");
+            manager.setBirthDay(c.getTime());
+            manager.setLegalDocument("sadas");
+            manager.setPayment(30.0);
+            manager.setEmail("emailinvalido");
+            manager.setPhones(null);
+            em.persist(manager);
+            em.flush();
+            assertNotNull(manager.getId());
+        } catch (ConstraintViolationException ex) {
+            Set<ConstraintViolation<?>> constraintViolations = ex.getConstraintViolations();
+            
+            
+            for (ConstraintViolation violation: constraintViolations) {
+                System.out.println(violation.getMessage());
+                assertThat(violation.getMessage(),
+                    
+                    CoreMatchers.anyOf(
+                        startsWith("O nome do usuario deve ser valido"),
+                        startsWith("O cpf informado está em um formato invalido"),
+                        startsWith("Datas de nascimento devem ser apenas datas passadas"),
+                        startsWith("O Valor minimo de um salario é 1000.00"),
+                        startsWith("E-mail invalido"),
+                        startsWith("Informe no minimo um telefone do usuario")
+                        
+                    ));
+            }
+            
+            assertEquals(6, constraintViolations.size());
+            assertNull(manager.getId());
+            throw ex;
+        }
     }
 }

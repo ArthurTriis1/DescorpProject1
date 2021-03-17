@@ -50,31 +50,31 @@ public abstract class UserAbstract implements Serializable{
     protected Long id;
     
     @NotNull
-    @NotBlank
+    @NotBlank(message = "O nome do usuario deve ser valido")
     @Size(max=15)
     @Column(name = "NAME", nullable = false)
     private String name;
     
-    @CPF
+    @CPF(message = "O cpf informado está em um formato invalido")
     @Column(name = "LEGAL_DOCUMENT", nullable = false)
     private String legalDocument;
     
-    @Past
+    @Past(message = "Datas de nascimento devem ser apenas datas passadas")
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDay;
     
     @NotNull
-    @DecimalMin("1000.00")
+    @DecimalMin(value = "1000.00", message = "O Valor minimo de um salario é 1000.00")
     @Column(name = "PAYMENT")
     private Double payment;
     
     @NotNull
-    @Email
+    @Email(message = "E-mail invalido")
     @Column(name = "EMAIL")
     private String email;
     
-    @Size(min = 1)
+    @NotNull(message = "Informe no minimo um telefone do usuario")
     @ElementCollection
     @CollectionTable(name = "TB_PHONE",
             joinColumns = @JoinColumn(name = "ID_USER", nullable = false))
@@ -140,8 +140,9 @@ public abstract class UserAbstract implements Serializable{
         this.email = email;
     }
     
-    
-    
+    public void setPhones(Collection<String> phones) {
+        this.phones = phones;
+    }
     
     @Override
     public int hashCode() {
