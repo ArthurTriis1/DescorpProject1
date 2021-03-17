@@ -140,4 +140,27 @@ public class AuthorCrudTest extends AbstractBasicTest{
             throw ex;
         }
     }
+    
+    @Test(expected = ConstraintViolationException.class)
+    public void atualizarAutorInvalido() {
+        String jpql = "SELECT a FROM Author a WHERE a.id = ?1";
+    
+        TypedQuery<Author> query = em.createQuery(jpql, Author.class);
+        query.setParameter(1, 3L);
+    
+        Author author = query.getSingleResult();
+        assertNotNull(author);
+    
+        author.setName("");
+        
+        try {
+            em.merge(author);
+            em.flush();
+        } catch (ConstraintViolationException ex) {
+            ConstraintViolation violation = ex.getConstraintViolations().iterator().next();
+            assertEquals("O Nome do autor deve ser valido", violation.getMessage());
+            assertEquals(1, ex.getConstraintViolations().size());
+            throw ex;
+        }
+    }
 }

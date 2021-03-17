@@ -254,7 +254,7 @@
     
     <TB_USER 
         name="Arthur"
-        legal_document="7789906657"
+        legal_document="435.958.910-74"
         birth_date="1999-04-27"
         payment="1000"
         disc_user="SEL"
@@ -263,7 +263,7 @@
     
     <TB_USER 
         name="Gabryelli"
-        legal_document="7789954432"
+        legal_document="929.358.340-20"
         birth_date="1995-10-02"
         payment="2500"
         disc_user="SEL"
@@ -272,7 +272,7 @@
     
     <TB_USER 
         name="Forroldo"
-        legal_document="80723289050"
+        legal_document="611.809.940-51"
         birth_date="1998-04-05"
         payment="3500"
         disc_user="MAN"
@@ -281,7 +281,7 @@
     
     <TB_USER 
         name="Jennifer"
-        legal_document="5566774231"
+        legal_document="057.550.400-52"
         birth_date="1973-04-09"
         payment="6000.00"
         disc_user="MAN"

@@ -15,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 /**
  *
@@ -30,6 +32,7 @@ public class Seller extends UserAbstract implements Serializable{
     @JoinColumn(name = "ID_LIBRARY", referencedColumnName = "ID")
     private Library library;
     
+    @NotBlank(message = "A Area de atuação no vendedor não deve estar vazia")
     @Column(name = "AREA")
     private String area;
 
