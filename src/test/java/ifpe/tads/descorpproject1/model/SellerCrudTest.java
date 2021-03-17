@@ -26,9 +26,13 @@ import static org.junit.Assert.*;
 public class SellerCrudTest extends AbstractBasicTest{
     @Test
     public void createSeller() {
+
+        Calendar c = Calendar.getInstance();
+        c.set(2019, Calendar.FEBRUARY, 10);
+
         Seller seller = new Seller();
         seller.setName("Seller");
-        seller.setBirthDay(new Date());
+        seller.setBirthDay(c.getTime());
         seller.setLegalDocument("87172656067");
         seller.setPayment(1600.00);
         seller.addPhone("77777-7777");

@@ -25,10 +25,14 @@ import static org.junit.Assert.*;
 public class ManagerCrudTest extends AbstractBasicTest{
     @Test
     public void createManager() {
+
+        Calendar c = Calendar.getInstance();
+        c.set(2019, Calendar.FEBRUARY, 10);
+
         Manager manager = new Manager();
         manager.setName("Manager");
-        manager.setBirthDay(new Date());
-        manager.setLegalDocument("780.429.390-94");
+        manager.setBirthDay(c.getTime());
+        manager.setLegalDocument("354.126.320-25");
         manager.setPayment(2200.00);
         manager.addPhone("99999-9999");
         manager.setEmail("manager@gmail.com");
