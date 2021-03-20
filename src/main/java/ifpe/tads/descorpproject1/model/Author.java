@@ -5,8 +5,6 @@
  */
 package ifpe.tads.descorpproject1.model;
 
-import ifpe.tads.descorpproject1.constants.Constants;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

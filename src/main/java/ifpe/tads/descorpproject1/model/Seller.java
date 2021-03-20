@@ -5,8 +5,6 @@
  */
 package ifpe.tads.descorpproject1.model;
 
-import ifpe.tads.descorpproject1.constants.Constants;
-
 import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;

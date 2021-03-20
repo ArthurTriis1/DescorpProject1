@@ -5,7 +5,6 @@
  */
 package ifpe.tads.descorpproject1.model;
 
-import ifpe.tads.descorpproject1.constants.Constants;
 import ifpe.tads.descorpproject1.enums.Condition;
 import ifpe.tads.descorpproject1.validators.BrazilianISBNValidate;
 import java.io.Serializable;
