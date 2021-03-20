@@ -13,7 +13,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = BrazilianISBNValidator.class)
 @Documented
 public @interface BrazilianISBNValidate {
-    String message() default "ISBN invalido. O ISBN deve ser brasileiro, com o codigo 65 ou 85.";
+    String message() default "{ifpe.tads.descorpproject1.Book.isbnInvalid}";
 
     Class<?>[] groups() default {};
 

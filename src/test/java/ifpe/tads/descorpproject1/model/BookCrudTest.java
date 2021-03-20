@@ -181,7 +181,7 @@ public class BookCrudTest extends AbstractBasicTest{
                             startsWith("Um livro tem o valor minimo de R$0,01"),
                             startsWith("Um livro deve conter um nome de editora valida"),
                             startsWith("Um livro deve conter um estado valido"),
-                            startsWith("ISBN invalido. O ISBN deve ser brasileiro, com o codigo 65 ou 85.")
+                            startsWith("ISBN invalido. O ISBN deve ser brasileiro, com o codigo 65 ou 85")
                         ));
             }
 

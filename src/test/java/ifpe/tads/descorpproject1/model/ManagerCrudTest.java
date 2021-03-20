@@ -91,7 +91,7 @@ public class ManagerCrudTest extends AbstractBasicTest{
     
     
     @Test(expected = ConstraintViolationException.class)
-    public void persistirAutorInvalido() {
+    public void persistirGerenteInvalido() {
         Manager  manager = new Manager();
         Calendar c = Calendar.getInstance();
         c.set(2023, Calendar.FEBRUARY, 10);

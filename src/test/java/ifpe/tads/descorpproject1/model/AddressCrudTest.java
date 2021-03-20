@@ -110,7 +110,7 @@ public class AddressCrudTest extends AbstractBasicTest{
     }
     
     @Test(expected = ConstraintViolationException.class)
-    public void persistirAutorInvalido() {
+    public void persistirEnderecoInvalido() {
         Library library = new Library();
         library.setName("Sebo com endereço");
     
