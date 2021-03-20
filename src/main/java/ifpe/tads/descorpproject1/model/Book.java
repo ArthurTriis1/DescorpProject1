@@ -43,7 +43,7 @@ public class Book implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank(message = Constants.Erros.Book.TITLE)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Book.title}")
     @Column(name = "TITLE",
             length = 150,
             nullable = false)
@@ -51,21 +51,21 @@ public class Book implements Serializable {
     
     @NotNull
     @Max(value = 2100,
-         message = Constants.Erros.Book.RELEASE_YEAR )
+         message = "{ifpe.tads.descorpproject1.Book.releaseYear}" )
     @Column(name = "RELEASE_YEAR")
     private Integer releaseYear;
     
     @NotNull
-    @NotBlank(message = Constants.Erros.Book.PUBLISHER )
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Book.publisher}" )
     @Column(name = "PUBLISHER", length = 150, nullable = false)
     private String publisher;
     
-    @NotNull(message = Constants.Erros.Book.CONDITION )
+    @NotNull(message = "{ifpe.tads.descorpproject1.Book.condition}" )
     @Enumerated(EnumType.STRING)
     @Column(name = "CONDITION", length = 150, nullable = false)
     private Condition condition;
     
-    @DecimalMin(value = "0.01", message = Constants.Erros.Book.PRICE )
+    @DecimalMin(value = "0.01", message = "{ifpe.tads.descorpproject1.Book.price}" )
     @Column(name = "PRICE", length = 150, nullable = true)
     private Double price;
     
@@ -76,7 +76,7 @@ public class Book implements Serializable {
     @NotNull
     @NotBlank
     @Pattern(regexp = "0*(?=.{17}$)97(?:8|9)([ -])\\d{1,5}\\1\\d{1,7}\\1\\d{1,6}\\1\\d$", 
-             message = Constants.Erros.Book.BR_ISBN)
+             message = "{ifpe.tads.descorpproject1.Book.brazilianISBN}")
     @BrazilianISBNValidate
     @Column(name = "BR_ISBN", length = 25, nullable = true)
     private String brazilianISBN;

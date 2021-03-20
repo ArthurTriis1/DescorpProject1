@@ -34,7 +34,7 @@ public class Seller extends UserAbstract implements Serializable{
     @JoinColumn(name = "ID_LIBRARY", referencedColumnName = "ID")
     private Library library;
     
-    @NotBlank(message = Constants.Erros.Seller.AREA)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Seller.area}")
     @Column(name = "AREA")
     private String area;
 

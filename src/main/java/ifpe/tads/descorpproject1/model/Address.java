@@ -27,34 +27,34 @@ import javax.validation.constraints.Size;
 public class Address implements Serializable {
     
     @NotNull
-    @NotBlank(message = Constants.Erros.Address.STREET)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Address.street}")
     @Size(max = 150)
     @Column(name = "ADD_STREET")
     private String street;
     
     @NotNull
-    @NotBlank(message = Constants.Erros.Address.DISTRICT)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Address.district}")
     @Size(max = 150)
     @Column(name = "ADD_DISTRICT")
     private String district;
     
     @NotNull
-    @Min(value = 1, message = Constants.Erros.Address.NUMBER)
-    @Max(value = 9999, message = Constants.Erros.Address.NUMBER)
+    @Min(value = 1, message = "{ifpe.tads.descorpproject1.Address.number}")
+    @Max(value = 9999, message = "{ifpe.tads.descorpproject1.Address.number}")
     @Column(name = "ADD_NUMBER")
     private Integer number;
     
-    @Size(max = 30, message = Constants.Erros.Address.COMPLEMENT )
+    @Size(max = 30, message = "{ifpe.tads.descorpproject1.Address.complement}" )
     @Column(name = "ADD_COMPLEMENT")
     private String complement;
     
     @NotNull
     @Pattern(regexp = "[0-90]{2}.[0-9]{3}-[0-9]{3}", 
-             message = Constants.Erros.Address.POSTAL_CODE )
+             message = "{ifpe.tads.descorpproject1.Address.postalCode}" )
     @Column(name = "ADD_POSTAL_CODE")
     private String postalCode;
     
-    @NotNull(message = Constants.Erros.Address.STATE )
+    @NotNull(message = "{ifpe.tads.descorpproject1.Address.state}" )
     @Enumerated(EnumType.STRING)
     @Column(name = "ADD_STATE")
     private BrazilianStates state;

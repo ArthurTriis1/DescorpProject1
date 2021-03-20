@@ -36,7 +36,7 @@ public class Author implements Serializable {
     private Long id;
     
     @NotNull
-    @NotBlank(message = Constants.Erros.Author.NAME)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Author.name}")
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     

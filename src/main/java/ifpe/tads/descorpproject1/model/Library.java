@@ -55,12 +55,12 @@ public class Library implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
-    @NotNull(message = Constants.Erros.Library.NAME)
-    @NotBlank(message = Constants.Erros.Library.NAME)
+    @NotNull(message = "{ifpe.tads.descorpproject1.Library.name}")
+    @NotBlank(message = "{ifpe.tads.descorpproject1.Library.name}")
     @Column(name = "NAME", length = 150, nullable = false)
     private String name;
     
-    @NotNull(message = Constants.Erros.Library.ADDRESS)
+    @NotNull(message = "{ifpe.tads.descorpproject1.Library.address}")
     @Valid
     @Embedded
     private Address address;

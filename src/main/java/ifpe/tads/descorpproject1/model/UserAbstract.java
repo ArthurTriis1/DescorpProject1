@@ -52,31 +52,31 @@ public abstract class UserAbstract implements Serializable{
     protected Long id;
     
     @NotNull
-    @NotBlank(message = Constants.Erros.User.NAME)
+    @NotBlank(message = "{ifpe.tads.descorpproject1.User.name}")
     @Size(max=15)
     @Column(name = "NAME", nullable = false)
     private String name;
     
-    @CPF(message = Constants.Erros.User.LEGAL_DOCUMENT)
+    @CPF(message = "{ifpe.tads.descorpproject1.User.legalDocument}")
     @Column(name = "LEGAL_DOCUMENT", nullable = false)
     private String legalDocument;
     
-    @Past(message = Constants.Erros.User.BIRTH_DATE)
+    @Past(message = "{ifpe.tads.descorpproject1.User.birthDay}")
     @Temporal(TemporalType.DATE)
     @Column(name = "BIRTH_DATE", nullable = false)
     private Date birthDay;
     
     @NotNull
-    @DecimalMin(value = "1000.00", message = Constants.Erros.User.PAYMENT)
+    @DecimalMin(value = "1000.00", message = "{ifpe.tads.descorpproject1.User.payment}")
     @Column(name = "PAYMENT")
     private Double payment;
     
     @NotNull
-    @Email(message = Constants.Erros.User.EMAIL)
+    @Email(message = "{ifpe.tads.descorpproject1.User.email}")
     @Column(name = "EMAIL")
     private String email;
     
-    @NotNull(message = Constants.Erros.User.PHONE)
+    @NotNull(message = "{ifpe.tads.descorpproject1.User.phone}")
     @ElementCollection
     @CollectionTable(name = "TB_PHONE",
             joinColumns = @JoinColumn(name = "ID_USER", nullable = false))
